@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1>Edit Attribute</h1>
+
+<form method="POST">
+    <label for="attribute_name">Attribute Name:</label>
+    <input type="text" id="attribute_name" name="attribute_name" value="{{ attribute['name'] }}" required>
+
+    <label for="attribute_value">Attribute Value:</label>
+    <input type="text" id="attribute_value" name="attribute_value" value="{{ attribute['value'] }}" required>
+
+    <button type="submit">Update Attribute</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+    {% block content %}
+    <h2>Product Attributes</h2>
+    
+    
+    <form method="POST" action="{{ url_for('attributes') }}">
+        <label for="attribute_name">Attribute Name:</label>
+        <input type="text" id="attribute_name" name="attribute_name" required>
+        <label for="product_id">Product:</label>
+    <select id="product_id" name="product_id" required>
+        <option value="">Select a Product</option>
+        {% for product in products %}
+        <option value="{{ product['id'] }}">{{ product['name'] }}</option>
+        {% endfor %}
+    </select>
+        <label for="attribute_value">Attribute Value:</label>
+        <input type="text" id="attribute_value" name="attribute_value" required>
+    
+        <button type="submit">Add Attribute</button>
+    </form>
+    
+ 
+    <h2>Stored Attributes</h2>
+    <table>
+        <thead>
+            <tr>
+                
+                <th>Name</th>
+                <th>Value</th>
+                <th>product id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for attribute in attributes %}
+            <tr>
+                
+                <td>{{ attribute['attribute_name'] }}</td>
+                <td>{{ attribute['attribute_value'] }}</td>
+                <td>{{attribute['product_id']}}</td>
+                <td>
+                    
+                    
+                    <a href="{{ url_for('edit_attribute', id=attribute['id']) }}">Edit</a>
+                    <a href="{{ url_for('delete_attribute', id=attribute['id']) }}" onclick="return confirm('Are you sure?')">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    {% endblock %}
+    

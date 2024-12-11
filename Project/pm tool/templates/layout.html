@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Product Management</h1>
+    </header>
+    <nav>
+        <a href="{{ url_for('categories') }}">Categories</a>
+        <a href="{{ url_for('products') }}">Products</a>
+        <a href="{{ url_for('attributes') }}">Attributes</a>
+    </nav>
+    <main>
+        <h4>About us</h4>
+        <p>
+            Welcome to the product management system. Here, you can manage your products, categories, and attributes effortlessly. 
+        </p>
+    </main>
+        {% block content %}
+        {% endblock %}
+    
+</body>
+</html>
+
+

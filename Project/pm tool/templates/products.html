@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Products</h2>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+<form method="POST" action="{{ url_for('products') }}">
+    <label>Name:</label>
+    <input type="text" name="product_name" required>
+    <label>Price:</label>
+    <input type="number" name="price" step="0.01" required>
+    <label>Description:</label>
+    <textarea name="description"></textarea>
+    <label>Category:</label>
+    <select name="category_id" required>
+        <option value="">Select Category</option>
+        {% for category in categories %}
+        <option value="{{ category['id'] }}">{{ category['name'] }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Add Product</button>
+</form>
+
+</section>
+    
+<h2>Stored Products</h2>
+<table>
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>description</th>
+            <th>price</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr>
+                <td>{{ product['id'] }}</td>
+                <td>{{ product['name'] }}</td>
+                <td>{{ product['description'] }}</td>
+                <td>{{ product['price'] }}</td>
+            <td>
+                <a href="{{ url_for('edit_product', id=product['id']) }}">Edit</a>
+                <a href="{{ url_for('delete_product', id=product['id']) }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
