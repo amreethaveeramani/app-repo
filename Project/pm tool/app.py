@@ -3,7 +3,7 @@ import mysql.connector
 
 app = Flask(__name__)
 
-# Database Connection
+
 def get_db_connection():
     conn = mysql.connector.connect(
         host="localhost",
@@ -13,12 +13,12 @@ def get_db_connection():
     )
     return conn
 
-# Home Route
+
 @app.route('/')
 def home():
     return render_template('layout.html')
 
-# CRUD for Categories
+
 @app.route('/categories', methods=['GET', 'POST'])
 def categories():
     conn = get_db_connection()
@@ -71,7 +71,7 @@ def edit_category(id):
     conn.close()
     return render_template('edit_category.html', category=category)
 
-# CRUD for Products
+
 @app.route('/products', methods=['GET', 'POST'])
 def products():
     conn = get_db_connection()
@@ -134,7 +134,7 @@ def edit_product(id):
     conn.close()
     return render_template('edit_product.html', product=product, categories=categories)
 
-# CRUD for Attributes
+
 @app.route('/attributes', methods=['GET', 'POST'])
 def attributes():
     conn = get_db_connection()
